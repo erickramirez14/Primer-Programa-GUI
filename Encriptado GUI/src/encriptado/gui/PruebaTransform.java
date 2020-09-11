@@ -110,7 +110,7 @@ public class PruebaTransform extends JFrame
     public void Escribir(String txtFile){
       File archivo = null;
 
-      archivo = new File("src/Tap_primero/"+txtFile);
+      archivo = new File("src/encriptado/gui/"+txtFile);
         try { 
             BufferedReader leer = new BufferedReader(new FileReader(archivo));
             String linea = leer.readLine();

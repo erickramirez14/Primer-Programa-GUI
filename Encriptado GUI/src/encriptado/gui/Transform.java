@@ -101,7 +101,7 @@ public class Transform {
       PruebaTransform pt = new PruebaTransform();
 
       try {
-         archivo = new File ("src/Tap_primero/"+txtFile);
+         archivo = new File ("src/encriptado/gui/"+txtFile);
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
          String linea;
@@ -128,7 +128,7 @@ public class Transform {
             BufferedWriter bw;
             PrintWriter wr;
             try{
-            f = new File("src/Tap_primero/"+txtFile);
+            f = new File("src/encriptado/gui/guardar.txt");
             w= new FileWriter(f);
             bw= new BufferedWriter (w);
             wr= new PrintWriter(bw);
