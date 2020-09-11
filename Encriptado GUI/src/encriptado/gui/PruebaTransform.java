@@ -105,7 +105,7 @@ public class PruebaTransform extends JFrame
                 Transform t = new Transform();
                 t.Guardar(codigo,file);
           }
-    }//
+    }
     
     public void Escribir(String txtFile){
       File archivo = null;
