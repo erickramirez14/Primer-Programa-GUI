@@ -1,4 +1,4 @@
-package Tap_primero;
+package encriptado.gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -67,11 +67,58 @@ public class PruebaTransform extends JFrame
     	@Override
           public void actionPerformed(ActionEvent event)
           {
-                String codigo= text.getText();
                 String File= txtFile.getText();
                 Transform t = new Transform();
-                t.Leer(File);
+                try {
+                    Leer(File);
+                } catch (IOException ex) {
+                    Logger.getLogger(PruebaTransform.class.getName()).log(Level.SEVERE, null, ex);
+                }
           }
+          public void Leer(String txtFile) throws IOException {
+      File archivo = null;
+      FileReader fr = null;
+      BufferedReader br = null;
+      PruebaTransform pt = new PruebaTransform();
+
+      try {
+         archivo = new File ("src/encriptado/gui/"+txtFile);
+         fr = new FileReader (archivo);
+         br = new BufferedReader(fr);
+         String linea;
+         while((linea=br.readLine())!=null)
+            System.out.println(linea);
+      }
+      catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         try{                    
+            if( null != fr ){   
+               fr.close();     
+            }                  
+         }catch (Exception e2){ 
+            e2.printStackTrace();
+         }
+      }
+      Escribir(txtFile);
+   }
+          public void Escribir(String txtFile){
+      File archivo = null;
+
+      archivo = new File("src/encriptado/gui/"+txtFile);
+        try { 
+            BufferedReader leer = new BufferedReader(new FileReader(archivo));
+            String linea = leer.readLine();
+            while(linea != null){
+                text.append(linea+"\n");
+                linea = leer.readLine();
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Transform.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Transform.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }
     
     class AccionEncriptado implements ActionListener{
@@ -103,26 +150,8 @@ public class PruebaTransform extends JFrame
                 String codigo= text.getText();
                 String file= txtFile.getText();
                 Transform t = new Transform();
-                t.Guardar(codigo,file);
+                t.Guardar(codigo, file);
           }
-    }
-    
-    public void Escribir(String txtFile){
-      File archivo = null;
-
-      archivo = new File("src/encriptado/gui/"+txtFile);
-        try { 
-            BufferedReader leer = new BufferedReader(new FileReader(archivo));
-            String linea = leer.readLine();
-            while(linea != null){
-                text.append(linea+"\n");
-                linea = leer.readLine();
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Transform.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Transform.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
    public static void main(String[] args)

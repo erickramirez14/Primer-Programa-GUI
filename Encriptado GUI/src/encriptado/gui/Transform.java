@@ -1,4 +1,4 @@
-package Tap_primero;
+package encriptado.gui;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,7 +15,6 @@ public class Transform {
         String codigo = c;
         char[] convertir = new char[20];
         char[] acomodar = new char[20];
-        PruebaTransform pt = new PruebaTransform();
         
         String cadena = codigo.trim();
         float ncadena = cadena.length();
@@ -56,7 +55,6 @@ public class Transform {
         char[] convertir = new char[20];
         char[] acomodar = new char[20];
         int auxF = 0;
-        PruebaTransform pt = new PruebaTransform();
         
         String cadena = codigo.trim();
         float ncadena = cadena.length();
@@ -93,34 +91,6 @@ public class Transform {
         String cadena3 = cadena2.toString();
             return cadena3;
         }
-    
-    public void Leer(String txtFile) {
-      File archivo = null;
-      FileReader fr = null;
-      BufferedReader br = null;
-      PruebaTransform pt = new PruebaTransform();
-
-      try {
-         archivo = new File ("src/encriptado/gui/"+txtFile);
-         fr = new FileReader (archivo);
-         br = new BufferedReader(fr);
-         String linea;
-         while((linea=br.readLine())!=null)
-            System.out.println(linea);
-      }
-      catch(Exception e){
-         e.printStackTrace();
-      }finally{
-         try{                    
-            if( null != fr ){   
-               fr.close();     
-            }                  
-         }catch (Exception e2){ 
-            e2.printStackTrace();
-         }
-      }
-      pt.Escribir(txtFile);
-   }
 
         public void Guardar(String codigo,String txtFile){
             File f = null;
