@@ -94,9 +94,9 @@ public class Modelo {
         
         String cadena3 = cadena2.toString();
             return cadena3;
-        }
+    }
 
-        public void Guardar(String codigo,String txtFile){
+    public void Guardar(String codigo,String txtFile){
             File f = null;
             FileWriter w;
             BufferedWriter bw;
@@ -115,7 +115,7 @@ public class Modelo {
             }catch (IOException event){
             JOptionPane.showMessageDialog(null, event);
             }
-        }
+    }
         
     public void Leer(Vista view, String txtFile) throws IOException {
       File archivo = null;
@@ -144,7 +144,7 @@ public class Modelo {
       Escribir(view,txtFile);
     }
     
-    public String Escribir(Vista view,String txtFile){
+    public void Escribir(Vista view,String txtFile){
       this.view = view;
       File archivo = null;
       String linea = null;
@@ -162,6 +162,5 @@ public class Modelo {
         } catch (IOException ex) {
             Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return linea;
     }
 } 
