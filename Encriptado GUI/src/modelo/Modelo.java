@@ -1,17 +1,21 @@
-package encriptado.gui;
-
+package modelo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import vista.Vista;
 
-public class Transform {
-        
-    String Encriptar(String c){
+public class Modelo {
+    private Vista view;
+    
+    public String Encriptar(String c){
         String codigo = c;
         char[] convertir = new char[20];
         char[] acomodar = new char[20];
@@ -50,7 +54,7 @@ public class Transform {
         return cadena3;
         }
     
-    String Desencriptar(String c){
+    public String Desencriptar(String c){
         String codigo = c;
         char[] convertir = new char[20];
         char[] acomodar = new char[20];
@@ -98,7 +102,7 @@ public class Transform {
             BufferedWriter bw;
             PrintWriter wr;
             try{
-            f = new File("src/encriptado/gui/guardar.txt");
+            f = new File("src/mvc/"+txtFile);
             w= new FileWriter(f);
             bw= new BufferedWriter (w);
             wr= new PrintWriter(bw);
@@ -112,5 +116,52 @@ public class Transform {
             JOptionPane.showMessageDialog(null, event);
             }
         }
-}
+        
+    public void Leer(Vista view, String txtFile) throws IOException {
+      File archivo = null;
+      FileReader fr = null;
+      BufferedReader br = null;
 
+      try {
+         archivo = new File ("src/mvc/"+txtFile);
+         fr = new FileReader (archivo);
+         br = new BufferedReader(fr);
+         String linea;
+         while((linea=br.readLine())!=null)
+            System.out.println(linea);
+      }
+      catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         try{                    
+            if( null != fr ){   
+               fr.close();     
+            }                  
+         }catch (Exception e2){ 
+            e2.printStackTrace();
+         }
+      }
+      Escribir(view,txtFile);
+    }
+    
+    public String Escribir(Vista view,String txtFile){
+      this.view = view;
+      File archivo = null;
+      String linea = null;
+
+      archivo = new File("src/mvc/"+txtFile);
+        try { 
+            BufferedReader leer = new BufferedReader(new FileReader(archivo));
+            linea = leer.readLine();
+            while(linea != null){
+                view.text.setText(linea+"\n");
+                linea = leer.readLine();
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return linea;
+    }
+} 
