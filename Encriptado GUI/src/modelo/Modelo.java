@@ -144,23 +144,5 @@ public class Modelo {
       Escribir(view,txtFile);
     }
     
-    public void Escribir(Vista view,String txtFile){
-      this.view = view;
-      File archivo = null;
-      String linea = null;
-
-      archivo = new File("src/mvc/"+txtFile);
-        try { 
-            BufferedReader leer = new BufferedReader(new FileReader(archivo));
-            linea = leer.readLine();
-            while(linea != null){
-                view.text.setText(linea+"\n");
-                linea = leer.readLine();
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 } 
